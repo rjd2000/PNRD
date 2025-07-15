@@ -1,0 +1,30 @@
+const express = require('express');
+const db = require('../database');
+const router = express.Router();
+
+router.get('/raj', (req, res) => {
+    const query = 'SELECT * FROM centre';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching centers:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        res.json(results);
+    }); 
+});
+
+router.get('/specificCenter', (req, res) => {
+    const query = 'SELECT * FROM centre WHERE CentreName = ?'; 
+    const centerName = req.query.name; // Assuming the center name is passed as a query parameter
+    db.query(query, [centerName], (err, results) => {           
+        if (err) {
+            console.error('Error fetching specific center:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ error: 'Center not found' });
+        }
+        res.json(results[0]); // Return the first matching center
+    })
+});
+module.exports = router;
