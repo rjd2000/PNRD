@@ -2,7 +2,7 @@ const express = require('express');
 const db = require('../database');
 const router = express.Router();
  
-router.get('/ty', (req, res) => {
+router.get('/pp', (req, res) => {
     const query = 'SELECT * FROM employeetype ';
     db.query(query, (err, results) => {
         if (err) {
