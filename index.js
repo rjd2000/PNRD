@@ -47,7 +47,7 @@ app.use('/ca',category);
 app.use('/co',course);
 app.use('/de',designation);
 app.use('/e',employee);
-app.use('/em',employeetype);
+app.use('/ee',employeetype);
 app.use('/f',financialyear);
 app.use('/mo',modeoftraining);
 app.use('/pa',participants);
