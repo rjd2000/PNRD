@@ -2,7 +2,7 @@ const express = require('express');
 const db = require('../database');
 const router = express.Router();
  
-router.get('/dis', (req, res) => {
+router.get('/gen', (req, res) => {
     const query = 'SELECT * FROM gender ';
     db.query(query, (err, results) => {
         if (err) {
