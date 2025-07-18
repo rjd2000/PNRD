@@ -3,7 +3,7 @@ const db = require('../database');
 const router = express.Router();
  
 router.get('/mod', (req, res) => {
-    const query = 'SELECT * FROM modeoftraining ';
+    const query = 'SELECT * FROM modeoftraining';
     db.query(query, (err, results) => {
         if (err) {
             console.error('Error fetching modeoftraining :', err);
