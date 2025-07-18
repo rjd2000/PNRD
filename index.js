@@ -13,7 +13,7 @@ const gender = require('./route/gender');
 const category = require('./route/category');
 const course = require('./route/course');
 const trainingtype = require('./route/trainingtype');
-const employee = require('./employee');
+const employee = require('./route/employee');
 
 
 
