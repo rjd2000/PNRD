@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
 const CORS = require('cors');
-const bodyParser = require('body-parser');  
-const db = require('./database'); // Assuming you have a databa
+const bodyParser = require('body-parser');
+require('dotenv').config();  
+
+// Assuming you have a databa
 
 const center = require('./route/center');
 const district = require('./route/district');
