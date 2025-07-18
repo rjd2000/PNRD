@@ -2,7 +2,7 @@ const express = require('express');
 const db = require('../database');
 const router = express.Router();
 
-router.get('/cc', (req, res) => {
+router.get('/cas', (req, res) => {
     const query = 'SELECT * FROM caste ';
     db.query(query, (err, results) => {
         if (err) {
