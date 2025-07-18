@@ -16,7 +16,7 @@ const employeetype = require('./route/employeetype');
 const financialyear = require('./route/financialyear');
 const modeoftraining = require('./route/modeoftraining');
 const participants = require('./route/participants');
-const training = require('./route/training');
+const Training = require('./route/Training');
 const trainingtype = require('./route/trainingtype');
 const coordinator = require('./route/coordinator');
 
@@ -49,7 +49,7 @@ app.use('/em',employeetype);
 app.use('/f',financialyear);
 app.use('/mo',modeoftraining);
 app.use('/pa',participants);
-app.use('/t',training);
+app.use('/t',Training,);
 app.use('/ty',trainingtype);
 app.use('/coo',coordinator);
 
