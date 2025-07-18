@@ -2,6 +2,17 @@ const express = require('express');
 const db = require('../database');
 const router = express.Router();
 
+router.get('/cc', (req, res) => {
+    const query = 'SELECT * FROM caste ';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching caste :', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        res.json(results);
+    });
+})
+
 router.post('/cc', (req, res) => {
     const { CasteID, CasteName } = req.body;
     const query = 'INSERT INTO caste (CasteID, CasteName) VALUES (?, ?)';
