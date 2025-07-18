@@ -42,7 +42,7 @@ app.use('/ca',category);
 app.use('/co',course);
 app.use('/tra',trainingtype);
 app.use('/e', employee);
-app.use('/pa', Participants);
+app.use('/pa', participants);
 
 
 
