@@ -8,6 +8,11 @@ const center = require('./route/center');
 const district = require('./route/district');
 const caste = require('./route/caste');
 const gender = require('./route/gender');
+const category = require('./route/category');
+const course = require('./route/course');
+
+
+
 
 app.use(express.json());
 app.use(bodyParser.json()) 
@@ -27,6 +32,10 @@ app.use('/c', center);
 app.use('/d', district);
 app.use('/caste', caste);
 app.use('/g',gender);
+app.use('/ca',category);
+app.use('/co',course);
+
+
 
 const PORT = 8000;
 app.listen(PORT, () => {
