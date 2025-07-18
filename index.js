@@ -13,6 +13,7 @@ const gender = require('./route/gender');
 const category = require('./route/category');
 const course = require('./route/course');
 const trainingtype = require('./route/trainingtype');
+const employee = require('./employee');
 
 
 
@@ -38,6 +39,7 @@ app.use('/g',gender);
 app.use('/ca',category);
 app.use('/co',course);
 app.use('/tra',trainingtype);
+app.use('/e', employee);
 
 
 
