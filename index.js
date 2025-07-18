@@ -37,7 +37,7 @@ app.use('/caste', caste);
 app.use('/g',gender);
 app.use('/ca',category);
 app.use('/co',course);
-app.use('/tra', trainingtype);
+app.use('/tra',trainingtype);
 
 
 
