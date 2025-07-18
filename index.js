@@ -12,6 +12,7 @@ const caste = require('./route/caste');
 const gender = require('./route/gender');
 const category = require('./route/category');
 const course = require('./route/course');
+const trainingtype = require('./route/trainingtype');
 
 
 
@@ -36,6 +37,8 @@ app.use('/caste', caste);
 app.use('/g',gender);
 app.use('/ca',category);
 app.use('/co',course);
+app.use('/tra', trainingtype);
+
 
 
 
