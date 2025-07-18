@@ -12,15 +12,6 @@ const caste = require('./route/caste');
 const gender = require('./route/gender');
 const category = require('./route/category');
 const course = require('./route/course');
-const designation = require('./route/designation');
-const employee = require('./route/employee');
-const employeetype = require('./route/employeetype');
-const financialyear = require('./route/financialyear');
-const modeoftraining = require('./route/modeoftraining');
-const participants = require('./route/participants');
-const Training = require('./route/Training');
-const trainingtype = require('./route/trainingtype');
-const coordinator = require('./route/coordinator');
 
 
 
@@ -45,15 +36,6 @@ app.use('/caste', caste);
 app.use('/g',gender);
 app.use('/ca',category);
 app.use('/co',course);
-app.use('/de',designation);
-app.use('/e',employee);
-app.use('/ee',employeetype);
-app.use('/f',financialyear);
-app.use('/mo',modeoftraining);
-app.use('/pa',participants);
-app.use('/t',Training,);
-app.use('/ty',trainingtype);
-app.use('/coo',coordinator);
 
 
 
