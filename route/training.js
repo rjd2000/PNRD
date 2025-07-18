@@ -11,7 +11,14 @@ router.get('/tra', (req, res) => {
         }
         res.json(results);
     });
+
 })
+
+
+
+
+
+
 
 
 module.exports = router;
