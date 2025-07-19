@@ -47,7 +47,7 @@ app.use(CORS(
 
 app.use('/c', center);
 app.use('/d', district);
-app.use('/caste', caste);
+app.use('/caa', caste);
 app.use('/g',gender);
 app.use('/ca',category);
 app.use('/co',course);
