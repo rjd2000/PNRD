@@ -15,6 +15,8 @@ const course = require('./route/course');
 const trainingtype = require('./route/trainingtype');
 const employee = require('./route/employee');
 const participants = require('./route/Participants');
+const Training = require('./route/training');
+
 
 
 
@@ -43,6 +45,7 @@ app.use('/co',course);
 app.use('/tra',trainingtype);
 app.use('/e', employee);
 app.use('/pa', participants);
+app.use('/te', Training);
 
 
 
