@@ -20,6 +20,7 @@ const financialyear = require('./route/financialyear');
 const designation = require('./route/designation');
 const coordinator = require('./route/coordinator');
 const modeoftraining = require('./route/modeoftraining');
+const employeetype = require('./route/employeetype');
 
 
 
@@ -58,6 +59,8 @@ app.use('/f', financialyear);
 app.use('/de', designation);
 app.use('/coo', coordinator);
 app.use('/mo', modeoftraining);
+app.use('/ee', employeetype);
+
 
 
 
