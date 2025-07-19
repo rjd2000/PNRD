@@ -19,6 +19,10 @@ const Training = require('./route/training');
 const financialyear = require('./route/financialyear');
 const designation = require('./route/designation');
 const coordinator = require('./route/coordinator');
+const modeoftraining = require('./route/modeoftraining');
+
+
+
 
 
 
@@ -53,6 +57,7 @@ app.use('/te', Training);
 app.use('/f', financialyear);
 app.use('/de', designation);
 app.use('/coo', coordinator);
+app.use('/mo', modeoftraining);
 
 
 
