@@ -13,7 +13,7 @@ router.get('/ca', (req, res) => {
     });
 })
 
-router.post('/cc', (req, res) => {
+router.post('/co', (req, res) => {
     const { CasteID, CasteName } = req.body;
     const query = 'INSERT INTO caste (CasteID, CasteName) VALUES (?, ?)';
     
