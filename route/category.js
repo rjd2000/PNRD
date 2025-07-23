@@ -13,7 +13,7 @@ router.get('/cat', (req, res) => {
     });
 })
 
-router.post('/co', (req, res) => {
+router.post('/ch', (req, res) => {
     const { CategoryID, CategoryName  } = req.body;
     const query = 'INSERT INTO category (CategoryID, CategoryName) VALUES (?, ?)';
     
