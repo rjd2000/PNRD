@@ -12,6 +12,18 @@ router.get('/cou', (req, res) => {
         res.json(results);
     });
 })
+router.post('/ch', (req, res) => {
+    const { CourseID, CourseName  } = req.body;
+    const query = 'INSERT INTO course (CourseID, CourseName) VALUES (?, ?)';
+    
+    db.query(query, [CourseID, CourseName ], (err, results) => {
+        if (err) {
+            console.error('Error inserting course:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        res.status(201).json({ message: 'course added successfully', id: results.insertId });
+    });
+});
 
 
 module.exports = router;
