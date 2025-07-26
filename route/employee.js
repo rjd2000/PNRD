@@ -12,6 +12,18 @@ router.get('/em', (req, res) => {
         res.json(results);
     });
 })
+router.post('/ch', (req, res) => {
+    const { EmployeeID, EmployeeName, DesignationID, Contact,Email,Qualification,AreaOfSpecialization,Photographs,EmployeeTypeID } = req.body;
+    const query = 'INSERT INTO employee (EmployeeID, EmployeeName, DesignationID, Contact,Email,Qualification,AreaOfSpecialization,Photographs,EmployeeTypeID ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    
+    db.query(query, [EmployeeID, EmployeeName, DesignationID, Contact,Email,Qualification,AreaOfSpecialization,Photographs,EmployeeTypeID ], (err, results) => {
+        if (err) {
+            console.error('Error inserting employee:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        res.status(201).json({ message: 'Employee added successfully', id: results.insertId });
+    });
+});
 
 router.delete('/cc/:EmployeeID', (req, res) => {
     const { EmployeeID } = req.params;
