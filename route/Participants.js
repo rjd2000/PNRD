@@ -23,6 +23,9 @@ router.post('/ch', (req, res) => {
         }
         res.status(201).json({ message: 'Participants added successfully', id: results.insertId });
     });
+    });
+
+
 
 
 router.delete('/cc/:ParticipationID', (req, res) => {
