@@ -43,5 +43,20 @@ router.post('/ce', (req, res) => {
         res.status(201).json({ message: 'centre added successfully', id: results.insertId });
     });
 });
+router.delete('/cc/:CentreID', (req, res) => {
+    const { CentreID } = req.params;
+    const query = 'DELETE FROM centre WHERE CentreID = ?';
+
+    db.query(query, [CentreID], (err, results) => {
+        if (err) {
+            console.error('Error deleting center:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Center not found' });
+        }
+        res.status(200).json({ message: 'Center deleted successfully' });
+    });
+});
 
 module.exports = router;
