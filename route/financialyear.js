@@ -14,7 +14,7 @@ router.get('/fi', (req, res) => {
 })
 router.post('/ch', (req, res) => {
     const { FinancialYearID, FinancialYear } = req.body;
-    const query = 'INSERT INTO financialyear (FinancialYearID, FinancialYear) VALUES (?, ?,)';
+    const query = 'INSERT INTO financialyear (FinancialYearID, FinancialYear) VALUES (?, ?)';
     
     db.query(query, [FinancialYearID, FinancialYear], (err, results) => {
         if (err) {
