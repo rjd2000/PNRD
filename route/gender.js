@@ -21,7 +21,7 @@ router.post('/ch', (req, res) => {
             console.error('Error inserting gender:', err);
             return res.status(500).json({ error: 'Internal server error' });
         }
-        res.status(200).json({ message: 'gender added successfully', id: results.insertId });
+        res.status(201).json({ message: 'gender added successfully', id: results.insertId });
     });
 });
 
