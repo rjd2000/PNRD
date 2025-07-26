@@ -24,6 +24,21 @@ router.post('/ch', (req, res) => {
         res.status(201).json({ message: 'category added successfully', id: results.insertId });
     });
 });
+router.delete('/cc/:EmployeeID', (req, res) => {
+    const { EmployeeID } = req.params;
+    const query = 'DELETE FROM employee WHERE EmployeeID = ?';
+
+    db.query(query, [EmployeeID], (err, results) => {
+        if (err) {
+            console.error('Error deleting employee:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Employee not found' });
+        }
+        res.status(200).json({ message: 'Employee deleted successfully' });
+    });
+});
 
 
 module.exports = router;
