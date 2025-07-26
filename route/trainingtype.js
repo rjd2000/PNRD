@@ -12,18 +12,7 @@ router.get('/tran', (req, res) => {
         res.json(results);
     });
 })
-router.post('/ch', (req, res) => {
-    const { TrainingTypeID, TrainingTypeName } = req.body;
-    const query = 'INSERT INTO trainingtype (TrainingTypeID, TrainingTypeName) VALUES (?, ?)';
-    
-    db.query(query, [TrainingTypeID, TrainingTypeName], (err, results) => {
-        if (err) {
-            console.error('Error inserting trainingtype:', err);
-            return res.status(500).json({ error: 'Internal server error' });
-        }
-        res.status(201).json({ message: 'trainingtype added successfully', id: results.insertId });
-    });
-});
+
 router.delete('/cc/:TrainingTypeID', (req, res) => {
     const { TrainingTypeID } = req.params;
     const query = 'DELETE FROM trainingtype WHERE TrainingTypeID = ?';
