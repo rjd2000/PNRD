@@ -12,6 +12,18 @@ router.get('/des', (req, res) => {
         res.json(results);
     });
 })
+router.post('/ch', (req, res) => {
+    const { DesignationID, Designation } = req.body;
+    const query = 'INSERT INTO designation (DesignationID, Designation) VALUES (?, ?)';
+    
+    db.query(query, [DesignationID, Designation], (err, results) => {
+        if (err) {
+            console.error('Error inserting designation:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        res.status(201).json({ message: 'Designation added successfully', id: results.insertId });
+    });
+});
 router.delete('/cc/:DesignationID', (req, res) => {
     const { DesignationID } = req.params;
     const query = 'DELETE FROM designation WHERE DesignationID = ?';
