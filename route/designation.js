@@ -12,7 +12,7 @@ router.get('/des', (req, res) => {
         res.json(results);
     });
 })
-router.post('/ch', (req, res) => {
+router.post('/ca', (req, res) => {
     const { DesignationID ,Designation  } = req.body;
     const query = 'INSERT INTO designation (DesignationID ,Designation ) VALUES (?, ?)';
     
