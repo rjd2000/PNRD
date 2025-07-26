@@ -12,16 +12,16 @@ router.get('/des', (req, res) => {
         res.json(results);
     });
 })
-router.post('/ca', (req, res) => {
-    const { DesignationID ,Designation  } = req.body;
-    const query = 'INSERT INTO designation (DesignationID ,Designation ) VALUES (?, ?)';
+router.post('/ch', (req, res) => {
+    const { DesignationID, DesignationName } = req.body;
+    const query = 'INSERT INTO designation (DesignationID, DesignationName) VALUES (?, ?)';
     
-    db.query(query, [DesignationID ,Designation ], (err, results) => {
+    db.query(query, [DesignationID, DesignationName], (err, results) => {
         if (err) {
             console.error('Error inserting designation:', err);
             return res.status(500).json({ error: 'Internal server error' });
         }
-        res.status(201).json({ message: 'designation added successfully', id: results.insertId });
+        res.status(201).json({ message: 'Designation added successfully', id: results.insertId });
     });
 });
 router.delete('/cc/:DesignationID', (req, res) => {
