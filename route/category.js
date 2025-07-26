@@ -27,7 +27,7 @@ router.post('/ch', (req, res) => {
 });
 router.delete('/cc/:CategoryID ', (req, res) => {
     const { CasteID } = req.params;
-    const query = 'DELETE FROM caste WHERE CategoryID  = ?';
+    const query = 'DELETE FROM category WHERE CategoryID  = ?';
 
     db.query(query, [CasteID], (err, results) => {
         if (err) {
