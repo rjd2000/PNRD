@@ -14,7 +14,7 @@ router.get('/des', (req, res) => {
 })
 router.post('/ch', (req, res) => {
     const { DesignationID, DesignationName } = req.body;
-    const query = 'INSERT INTO designation (DesignationID, DesignationName) VALUES (?, ?)';
+    const query = 'INSERT INTO designation (DesignationID, Designation) VALUES (?, ?)';
     
     db.query(query, [DesignationID, DesignationName], (err, results) => {
         if (err) {
