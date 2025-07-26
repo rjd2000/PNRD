@@ -15,7 +15,7 @@ router.get('/raj', (req, res) => {
 
 router.get('/specificCenter', (req, res) => {
     const query = 'SELECT * FROM centre WHERE CentreName = ?'; 
-    const centerName = req.query.name; // Assuming the center name is passed as a query parameter
+    const centerName = req.query.name; 
     db.query(query, [centerName], (err, results) => {           
         if (err) {
             console.error('Error fetching specific center:', err);
@@ -27,4 +27,21 @@ router.get('/specificCenter', (req, res) => {
         res.json(results[0]); // Return the first matching center
     })
 });
+
+
+router.post('/ce', (req, res) => {
+    const { CentreID ,CentreName,Address,FocalPersonEmployeeID } = req.body;
+   
+   const query = 'INSERT INTO centre ( CentreID ,CentreName,Address,FocalPersonEmployeeID  ) VALUES (?, ? , ?, ?)';
+   
+    
+    db.query(query, [CentreID ,CentreName,Address,FocalPersonEmployeeID  ], (err, results) => {
+        if (err) {
+            console.error('Error inserting centre :', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        res.status(201).json({ message: 'centre added successfully', id: results.insertId });
+    });
+});
+
 module.exports = router;
