@@ -25,6 +25,7 @@ router.post('/ch', (req, res) => {
     });
 });
 
+
 router.delete('/cc/:TrainingID', (req, res) => {
     const { TrainingID } = req.params;
     const query = 'DELETE FROM Training WHERE TrainingID = ?';
