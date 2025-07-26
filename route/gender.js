@@ -12,18 +12,6 @@ router.get('/gen', (req, res) => {
         res.json(results);
     });
 })
-router.post('/ch', (req, res) => {
-    const { GenderID , GenderName  } = req.body;
-    const query = 'INSERT INTO gender (GenderID , GenderName) VALUES (?, ?)';
-    
-    db.query(query, [GenderID , GenderName ], (err, results) => {
-        if (err) {
-            console.error('Error inserting gender:', err);
-            return res.status(500).json({ error: 'Internal server error' });
-        }
-        res.status(201).json({ message: 'gender added successfully', id: results.insertId });
-    });
-});
 
 router.delete('/cc/:GenderID', (req, res) => {
     const { GenderID } = req.params;
