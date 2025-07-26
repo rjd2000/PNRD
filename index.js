@@ -21,6 +21,8 @@ const designation = require('./route/designation');
 const coordinator = require('./route/coordinator');
 const modeoftraining = require('./route/modeoftraining');
 const employeetype = require('./route/employeetype');
+const Pass = require('./route/Pass');
+
 
 
 
@@ -60,6 +62,7 @@ app.use('/de', designation);
 app.use('/coo', coordinator);
 app.use('/mo', modeoftraining);
 app.use('/ee', employeetype);
+app.use('/pass', Pass);
 
 
 
