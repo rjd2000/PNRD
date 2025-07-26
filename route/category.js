@@ -25,11 +25,11 @@ router.post('/ch', (req, res) => {
         res.status(201).json({ message: 'category added successfully', id: results.insertId });
     });
 });
-router.delete('/cc/:CategoryID ', (req, res) => {
-    const { CasteID } = req.params;
-    const query = 'DELETE FROM category WHERE CategoryID  = ?';
+router.delete('/cc/:CategoryID', (req, res) => {
+    const { CategoryID } = req.params;
+    const query = 'DELETE FROM category WHERE CategoryID = ?';
 
-    db.query(query, [CasteID], (err, results) => {
+    db.query(query, [CategoryID], (err, results) => {
         if (err) {
             console.error('Error deleting category:', err);
             return res.status(500).json({ error: 'Internal server error' });
@@ -37,9 +37,7 @@ router.delete('/cc/:CategoryID ', (req, res) => {
         if (results.affectedRows === 0) {
             return res.status(404).json({ message: 'Category not found' });
         }
-        res.status(200).json({ message: 'category deleted successfully' });
+        res.status(200).json({ message: 'Category deleted successfully' });
     });
 });
-
-
 module.exports = router;
