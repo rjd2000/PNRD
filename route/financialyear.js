@@ -40,6 +40,27 @@ router.delete('/cc/:FinancialYearID', (req, res) => {
         res.status(200).json({ message: 'Financial year deleted successfully' });
     });
 });
+router.put('/cd/:FinancialYearID', (req, res) => {
+    const { FinancialYearID } = req.params;
+    const { FinancialYear } = req.body;
+    
+    if (!FinancialYear) {
+        return res.status(400).json({ error: 'FinancialYear is required' });
+    }
+    
+    const query = 'UPDATE financialyear SET FinancialYear = ? WHERE FinancialYearID = ?';
+    
+    db.query(query, [FinancialYear, FinancialYearID], (err, results) => {
+        if (err) {
+            console.error('Error updating financialyear:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Financial year not found' });
+        }
+        res.status(200).json({ message: 'Financial year updated successfully' });
+    });
+});
 
 
 module.exports = router;
