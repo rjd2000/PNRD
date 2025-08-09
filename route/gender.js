@@ -43,6 +43,26 @@ router.delete('/cc/:GenderID', (req, res) => {
     });
 });
 
+router.put('/cd/:GenderID', (req, res) => {
+    const { GenderID } = req.params;
+    const { GenderName } = req.body;
+    const query = 'UPDATE gender SET GenderName = ? WHERE GenderID = ?';
+
+    db.query(query, [GenderName, GenderID], (err, results) => {
+        if (err) {
+            console.error('Error updating gender:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Gender not found' });
+        }
+        res.status(200).json({ message: 'Gender updated successfully' });
+    });
+});
+
+
+
+
 
 
 
