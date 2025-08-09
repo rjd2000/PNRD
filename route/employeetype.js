@@ -40,6 +40,27 @@ router.delete('/cc/:EmployeeTypeID', (req, res) => {
         res.status(200).json({ message: 'Employee type deleted successfully' });
     });
 });
+router.put('/cd/:EmployeeTypeID', (req, res) => {
+    const { EmployeeTypeID } = req.params;
+    const { EmployeeType } = req.body;
+    
+    if (!EmployeeType) {
+        return res.status(400).json({ error: 'EmployeeType is required' });
+    }
+    
+    const query = 'UPDATE employeetype SET EmployeeType = ? WHERE EmployeeTypeID = ?';
+    
+    db.query(query, [EmployeeType, EmployeeTypeID], (err, results) => {
+        if (err) {
+            console.error('Error updating employeetype:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Employee type not found' });
+        }
+        res.status(200).json({ message: 'Employee type updated successfully' });
+    });
+});
 
 
 module.exports = router;
