@@ -58,5 +58,56 @@ router.delete('/cc/:CentreID', (req, res) => {
         res.status(200).json({ message: 'Center deleted successfully' });
     });
 });
+router.put('/cd/:CentreID', (req, res) => {
+    const { CentreID } = req.params;
+    const { CentreName, Address, FocalPersonEmployeeID } = req.body;
+    
+    if (!CentreName) {
+        return res.status(400).json({ error: 'CentreName is required' });
+    }
+    
+    
+    let query = 'UPDATE centre SET ';
+    let values = [];
+    let updateFields = [];
+    
+    if (CentreName) {
+        updateFields.push('CentreName = ?');
+        values.push(CentreName);
+    }
+    if (Address) {
+        updateFields.push('Address = ?');
+        values.push(Address);
+    }
+    if (FocalPersonEmployeeID) {
+        updateFields.push('FocalPersonEmployeeID = ?');
+        values.push(FocalPersonEmployeeID);
+    }
+    
+    query += updateFields.join(', ') + ' WHERE CentreID = ?';
+    values.push(CentreID);
+    
+    db.query(query, values, (err, results) => {
+        if (err) {
+            console.error('Error updating center:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Center not found' });
+        }
+        
+        res.status(200).json({ 
+            message: 'Center updated successfully',
+            updatedCenter: { 
+                CentreID, 
+                CentreName, 
+                Address: Address || 'Not updated', 
+                FocalPersonEmployeeID: FocalPersonEmployeeID || 'Not updated'
+            }
+        });
+    });
+});
+
 
 module.exports = router;
