@@ -42,7 +42,7 @@ router.delete('/cc/:CasteID', (req, res) => {
         res.status(200).json({ message: 'Caste deleted successfully' });
     });
 });
-module.exports = router;
+
 router.put('/cd/:CasteID', (req, res) => {
     const { CasteID } = req.params;
     const { CasteName } = req.body;
@@ -69,3 +69,4 @@ router.put('/cd/:CasteID', (req, res) => {
         });
     });
 });
+module.exports = router;
