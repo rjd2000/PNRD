@@ -40,6 +40,27 @@ router.delete('/cc/:TrainingTypeID', (req, res) => {
         res.status(200).json({ message: 'Training type deleted successfully' });
     });
 });
+router.put('/cd/:TrainingTypeID', (req, res) => {
+    const { TrainingTypeID } = req.params;
+    const { TrainingTypeName } = req.body;
+    
+    if (!TrainingTypeName) {
+        return res.status(400).json({ error: 'TrainingTypeName is required' });
+    }
+    
+    const query = 'UPDATE trainingtype SET TrainingTypeName = ? WHERE TrainingTypeID = ?';
+    
+    db.query(query, [TrainingTypeName, TrainingTypeID], (err, results) => {
+        if (err) {
+            console.error('Error updating trainingtype:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Training type not found' });
+        }
+        res.status(200).json({ message: 'Training type updated successfully' });
+    });
+});
 
 
 module.exports = router;
