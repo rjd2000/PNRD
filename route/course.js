@@ -39,6 +39,22 @@ router.delete('/cc/:CourseID', (req, res) => {
         res.status(200).json({ message: 'Course deleted successfully' });
     });
 });
+router.put('/cd/:CourseID', (req, res) => {
+    const { CourseID } = req.params;
+    const { CourseName } = req.body;
+    const query = 'UPDATE course SET CourseName = ? WHERE CourseID = ?';
+
+    db.query(query, [CourseName, CourseID], (err, results) => {
+        if (err) {
+            console.error('Error updating course:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Course not found' });
+        }
+        res.status(200).json({ message: 'Course updated successfully' });
+    });
+});
 
 
 module.exports = router;
