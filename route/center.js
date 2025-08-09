@@ -62,14 +62,19 @@ router.put('/cd/:CentreID', (req, res) => {
     const { CentreID } = req.params;
     const { CentreName, Address, FocalPersonEmployeeID } = req.body;
     
+   
     if (!CentreName) {
         return res.status(400).json({ error: 'CentreName is required' });
     }
     
+    if (FocalPersonEmployeeID && !Number.isInteger(Number(FocalPersonEmployeeID))) {
+        return res.status(400).json({ error: 'Invalid FocalPersonEmployeeID format' });
+    }
     
     let query = 'UPDATE centre SET ';
     let values = [];
     let updateFields = [];
+    
     
     if (CentreName) {
         updateFields.push('CentreName = ?');
@@ -84,12 +89,20 @@ router.put('/cd/:CentreID', (req, res) => {
         values.push(FocalPersonEmployeeID);
     }
     
+    
+    if (updateFields.length === 0) {
+        return res.status(400).json({ error: 'No fields to update' });
+    }
+    
     query += updateFields.join(', ') + ' WHERE CentreID = ?';
     values.push(CentreID);
     
     db.query(query, values, (err, results) => {
         if (err) {
             console.error('Error updating center:', err);
+            if (err.code === 'ER_DUP_ENTRY') {
+                return res.status(409).json({ error: 'Center name already exists' });
+            }
             return res.status(500).json({ error: 'Internal server error' });
         }
         
@@ -108,6 +121,5 @@ router.put('/cd/:CentreID', (req, res) => {
         });
     });
 });
-
 
 module.exports = router;
