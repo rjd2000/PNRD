@@ -40,6 +40,27 @@ router.delete('/cc/:TrainingModeID', (req, res) => {
         res.status(200).json({ message: 'Mode of training deleted successfully' });
     });
 });
+router.put('/cd/:TrainingModeID', (req, res) => {
+    const { TrainingModeID } = req.params;
+    const { TrainingModeName } = req.body;
+    
+    if (!TrainingModeName) {
+        return res.status(400).json({ error: 'TrainingModeName is required' });
+    }
+    
+    const query = 'UPDATE modeoftraining SET TrainingModeName = ? WHERE TrainingModeID = ?';
+    
+    db.query(query, [TrainingModeName, TrainingModeID], (err, results) => {
+        if (err) {
+            console.error('Error updating modeoftraining:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Mode of training not found' });
+        }
+        res.status(200).json({ message: 'Mode of training updated successfully' });
+    });
+});
 
 
 
