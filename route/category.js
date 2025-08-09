@@ -40,7 +40,7 @@ router.delete('/cc/:CategoryID', (req, res) => {
         res.status(200).json({ message: 'Category deleted successfully' });
     });
 });
-module.exports = router;
+
 
 
 router.put('/cd/:CategoryID', (req, res) => {
@@ -59,3 +59,4 @@ router.put('/cd/:CategoryID', (req, res) => {
         res.status(200).json({ message: 'Category updated successfully' });
     });
 });
+module.exports = router;
