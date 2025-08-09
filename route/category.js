@@ -41,3 +41,21 @@ router.delete('/cc/:CategoryID', (req, res) => {
     });
 });
 module.exports = router;
+
+
+router.put('/cd/:CategoryID', (req, res) => {
+    const { CategoryID } = req.params;
+    const { CategoryName } = req.body;
+    const query = 'UPDATE category SET CategoryName = ? WHERE CategoryID = ?';
+
+    db.query(query, [CategoryName, CategoryID], (err, results) => {
+        if (err) {
+            console.error('Error updating category:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Category not found' });
+        }
+        res.status(200).json({ message: 'Category updated successfully' });
+    });
+});
