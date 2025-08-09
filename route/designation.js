@@ -39,6 +39,27 @@ router.delete('/cc/:DesignationID', (req, res) => {
         res.status(200).json({ message: 'Designation deleted successfully' });
     });
 });
+router.put('/cd/:DesignationID', (req, res) => {
+    const { DesignationID } = req.params;
+    const { Designation } = req.body;
+    
+    if (!Designation) {
+        return res.status(400).json({ error: 'Designation is required' });
+    }
+    
+    const query = 'UPDATE designation SET Designation = ? WHERE DesignationID = ?';
+    
+    db.query(query, [Designation, DesignationID], (err, results) => {
+        if (err) {
+            console.error('Error updating designation:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Designation not found' });
+        }
+        res.status(200).json({ message: 'Designation updated successfully' });
+    });
+});
 
 
 module.exports = router;
