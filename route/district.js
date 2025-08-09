@@ -40,6 +40,27 @@ router.delete('/cc/:DistrictID', (req, res) => {
         res.status(200).json({ message: 'District deleted successfully' });
     });
 });
+router.put('/cd/:DistrictID', (req, res) => {
+    const { DistrictID } = req.params;
+    const { DistrictName } = req.body;
+    
+    if (!DistrictName) {
+        return res.status(400).json({ error: 'DistrictName is required' });
+    }
+    
+    const query = 'UPDATE district SET DistrictName = ? WHERE DistrictID = ?';
+    
+    db.query(query, [DistrictName, DistrictID], (err, results) => {
+        if (err) {
+            console.error('Error updating district:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'District not found' });
+        }
+        res.status(200).json({ message: 'District updated successfully' });
+    });
+});
 
 
 module.exports = router;
