@@ -39,6 +39,23 @@ router.delete('/cc/:CoordinatorID', (req, res) => {
         res.status(200).json({ message: 'Coordinator deleted successfully' });
     });
 });
+router.put('/cd/:CoordinatorID', (req, res) => {
+    const { CoordinatorID } = req.params;
+    const { EmployeeID } = req.body;
+    const query = 'UPDATE coordinator SET EmployeeID = ? WHERE CoordinatorID = ?';
+
+    db.query(query, [EmployeeID, CoordinatorID], (err, results) => {
+        if (err) {
+            console.error('Error updating coordinator:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Coordinator not found' });
+        }
+        res.status(200).json({ message: 'Coordinator updated successfully' });
+    });
+});
+
 
 
 
